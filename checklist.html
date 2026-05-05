@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Codebase Readiness Checklist — VibeOps by Unibrix</title>
+  <meta name="description" content="12 checks to audit a vibe-coded MVP before you ship it to real users. Architecture, agent context, database, security, handoff. Free, no email required." />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#090b0f" />
+  <link rel="canonical" href="https://vibeops.unibrix.com/checklist.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="VibeOps by Unibrix" />
+  <meta property="og:title" content="AI Codebase Readiness Checklist — 12 checks before you ship" />
+  <meta property="og:description" content="A founder-friendly audit checklist for AI-coded MVPs built with Cursor, Claude Code, Codex, and OpenCode." />
+  <meta property="og:url" content="https://vibeops.unibrix.com/checklist.html" />
+  <meta property="og:image" content="https://vibeops.unibrix.com/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://vibeops.unibrix.com/images/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Google Analytics 4 with Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var stored = (function(){ try { return localStorage.getItem('vibeops_consent'); } catch(e) { return null; } })();
+    var granted = stored === 'granted';
+    gtag('consent', 'default', {
+      'ad_storage': granted ? 'granted' : 'denied',
+      'ad_user_data': granted ? 'granted' : 'denied',
+      'ad_personalization': granted ? 'granted' : 'denied',
+      'analytics_storage': granted ? 'granted' : 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-RVPKTR892W', { 'anonymize_ip': true });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RVPKTR892W"></script>
+
+  <script>
+    (function () {
+      try {
+        if (new URLSearchParams(window.location.search).get('thanks') === '1') {
+          document.documentElement.classList.add('thanks');
+          document.addEventListener('DOMContentLoaded', function () {
+            document.body.classList.add('thanks');
+            document.title = 'Thanks — your AI Codebase Readiness Checklist';
+            if (typeof gtag === 'function') gtag('event', 'signup_complete', { event_category: 'lead' });
+          });
+        }
+      } catch (e) {}
+    })();
+
+    var AGENT_PROMPT = [
+      "You are auditing THIS repository against the VibeOps AI Codebase Readiness Checklist.",
+      "",
+      "For each of the 12 checks below, answer YES or NO with one short sentence of evidence — file paths, line numbers, or a brief note. Be honest, not optimistic. Then output the score and a fix plan.",
+      "",
+      "1. Does the repo have agent-readable context files (AGENTS.md, CLAUDE.md, .cursor/rules)?",
+      "2. Is the project structure documented somewhere a human or agent can find (docs/architecture.md or similar)?",
+      "3. Is the database schema reviewable in one place (migration history or docs/database.md)?",
+      "4. Are migrations forward-only and reversible (no editing past migrations to fix schema)?",
+      "5. Is auth implemented through ONE library, not multiple half-finished attempts?",
+      "6. Are secrets segregated (no live keys in committed files, .env.example present, real .env gitignored, secrets in a real store)?",
+      "7. Is there a consistent error-handling and logging pattern across routes/handlers?",
+      "8. Are there at least smoke-level tests on the critical path (signup -> core action -> critical write -> critical read)?",
+      "9. Is deployment one command or one merge with NO required manual steps?",
+      "10. Have OWASP basics been considered (parameterized queries, escaped output, CSRF/SameSite, rate limiting on auth, no PII in logs)?",
+      "11. Is \"done\" defined somewhere explicit (docs/definition-of-done.md or similar)?",
+      "12. Could a stranger clone, install, run locally, find the architecture/database docs, and deploy a small change in one week without asking the original author?",
+      "",
+      "After the YES/NO list, output:",
+      "- Score: X NOs out of 12",
+      "- Top 3 fixes ranked by impact-vs-effort, each with a one-line description and a rough time estimate",
+      "- One sentence on which check, if fixed first, would unlock the most other checks",
+      "",
+      "Source: https://vibeops.unibrix.com/checklist.html"
+    ].join("\n");
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var btn = document.getElementById('copy-prompt-btn');
+      if (!btn) return;
+      var originalLabel = btn.textContent;
+      var resetTimer;
+
+      function flash(message) {
+        clearTimeout(resetTimer);
+        btn.textContent = message;
+        resetTimer = setTimeout(function () { btn.textContent = originalLabel; }, 2200);
+      }
+
+      btn.addEventListener('click', async function () {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(AGENT_PROMPT);
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = AGENT_PROMPT;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+          }
+          flash('✓ Copied — paste into your agent');
+          if (typeof gtag === 'function') gtag('event', 'copy_agent_prompt', { event_category: 'engagement' });
+        } catch (e) {
+          flash('Copy failed — long-press to copy manually');
+        }
+      });
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Codebase Readiness Checklist — 12 checks before you ship",
+    "description": "A founder-friendly audit checklist for AI-coded MVPs.",
+    "author": { "@type": "Organization", "name": "Unibrix", "url": "https://unibrix.com" },
+    "publisher": { "@type": "Organization", "name": "VibeOps by Unibrix", "url": "https://vibeops.unibrix.com" },
+    "image": "https://vibeops.unibrix.com/images/og-image.png",
+    "url": "https://vibeops.unibrix.com/checklist.html",
+    "datePublished": "2026-05-05",
+    "inLanguage": "en"
+  }
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .checklist-wrap{width:min(900px,calc(100% - 32px));margin:0 auto;padding:88px 0 48px;color:#d7dce5}
+    .checklist-wrap .eyebrow{margin:0 0 14px}
+    .checklist-wrap h1{margin:0;font-size:clamp(40px,6vw,72px);letter-spacing:-.05em;line-height:1}
+    .checklist-wrap .lede{margin:18px 0 0;color:#aeb3bd;font-size:19px;max-width:680px}
+    .check-cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+    .checklist{display:grid;gap:14px;margin:48px 0 0}
+    .checklist details{border:1px solid rgba(255,255,255,.1);border-radius:22px;background:rgba(255,255,255,.045);padding:22px 24px;transition:border-color .2s,background .2s}
+    .checklist details[open]{border-color:rgba(232,255,147,.35);background:rgba(232,255,147,.04)}
+    .checklist summary{display:flex;align-items:center;gap:14px;cursor:pointer;list-style:none;font-weight:850;font-size:19px;letter-spacing:-.01em;color:#fff}
+    .checklist summary::-webkit-details-marker{display:none}
+    .checklist summary .num{display:grid;place-items:center;flex-shrink:0;width:34px;height:34px;border-radius:10px;background:#e8ff93;color:#090b0f;font-weight:900;font-size:14px;letter-spacing:-.02em}
+    .checklist summary .arrow{margin-left:auto;color:#9ea3ad;transition:transform .2s}
+    .checklist details[open] summary .arrow{transform:rotate(180deg)}
+    .checklist .body{margin:14px 0 0 48px;color:#aeb3bd;font-size:16px;line-height:1.6}
+    .checklist .body strong{color:#e8ff93;font-weight:800}
+    .checklist .body ul{padding-left:20px;margin:8px 0}
+    .checklist .body li{margin:4px 0}
+    .scoring{margin-top:48px;padding:28px 30px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(180deg,rgba(232,255,147,.06),rgba(232,255,147,0))}
+    .scoring h3{margin:0 0 8px;font-size:22px;letter-spacing:-.02em;color:#fff}
+    .scoring p{margin:6px 0;color:#aeb3bd}
+    .thanks-banner{display:none;margin:0 0 40px;padding:28px 32px;border-radius:28px;background:linear-gradient(135deg,#e8ff93 0%,#cdef7a 100%);color:#090b0f;box-shadow:0 30px 80px rgba(232,255,147,.18)}
+    .thanks-banner .check{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:#090b0f;color:#e8ff93;font-weight:900;font-size:22px;margin-bottom:14px}
+    .thanks-banner h2{margin:0;font-size:clamp(28px,4vw,40px);letter-spacing:-.035em;line-height:1.05}
+    .thanks-banner p{margin:12px 0 0;color:#252a17;font-size:17px;line-height:1.5;max-width:620px}
+    .thanks-banner strong{color:#090b0f}
+    .thanks-banner small{display:block;margin-top:18px;color:#3d4220;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:800}
+    body.thanks .thanks-banner{display:block}
+  </style>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="/" aria-label="VibeOps home"><span>V</span>VibeOps <em>by Unibrix</em></a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="/#problem">Problem</a>
+      <a href="/#system">System</a>
+      <a href="/#how">How it works</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="/#access">Get audit</a>
+  </header>
+
+  <main class="checklist-wrap">
+    <div class="thanks-banner" role="status" aria-live="polite">
+      <span class="check" aria-hidden="true">✓</span>
+      <h2>Thanks — you're on the list.</h2>
+      <p><strong>Unibrix will be in touch shortly</strong> with next steps and a founder-friendly audit option. In the meantime, here's the checklist — run through it and bring any "no" answers to our first call.</p>
+    </div>
+
+    <p class="eyebrow">Free · 12 checks · ~5 min</p>
+    <h1>AI Codebase Readiness Checklist</h1>
+    <p class="lede">Use this before you onboard real users, raise capital, or hand the repo to engineers. Each check is a yes/no question. Count your "no" answers — the more you have, the closer your MVP is to expensive rework.</p>
+    <div class="check-cta-row">
+      <button type="button" class="btn primary" id="copy-prompt-btn" aria-live="polite">Copy prompt for your agent</button>
+      <a class="btn secondary" href="javascript:window.print()">Print / save as PDF</a>
+    </div>
+
+    <ol class="checklist" start="1">
+      <details>
+        <summary><span class="num">01</span><span>Does your repo have agent-readable context files?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>Coding agents produce wildly different output depending on whether you've told them how this product is supposed to be built. Look for:</p>
+          <ul>
+            <li><strong>AGENTS.md</strong> — cross-tool standard for agent instructions.</li>
+            <li><strong>CLAUDE.md</strong> — Claude Code-specific repo guide.</li>
+            <li><strong>.cursor/rules/</strong> — Cursor rule files scoped to areas of the repo.</li>
+          </ul>
+          <p>If these don't exist (or are still default boilerplate), every new task is a coin flip on conventions.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">02</span><span>Is the project structure documented somewhere a human or agent can find?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>One short <strong>docs/architecture.md</strong> describing the top-level folders, the boundary between frontend and backend, where business logic lives, and which directories are "no-go" zones. If a new contributor (human or AI) can't answer "where does X live?" in 30 seconds, this check fails.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">03</span><span>Is your database schema reviewable in one place?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>Either a single migration history that tells the story, or a <strong>docs/database.md</strong> summary of tables, columns, relationships, and the reasoning. Agents are particularly bad at noticing when they invent a third "users" table — explicit schema docs prevent that.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">04</span><span>Are migrations forward-only and reversible?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>No "edit a previous migration to fix the schema" folklore. Every change is its own migration. You can roll a database forward and back without manual SQL. If you've never run a real migration in a staging environment, you don't know yet — this is a "no".</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">05</span><span>Is auth implemented through one library, not three half-finished attempts?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>Agents love to invent auth flows. Pick one (Clerk, Auth.js, Supabase Auth, Lucia, Cognito, your own JWT layer — any one of them) and make sure all routes go through it. Multiple auth helpers in the same repo is a "no".</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">06</span><span>Are secrets segregated from code and from production env files?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>No live API keys or passwords in committed files. <strong>.env.example</strong> exists with safe placeholders, real <strong>.env</strong> is gitignored, and production secrets live in a real secret store (1Password, Doppler, AWS/GCP Secret Manager, Vercel/Netlify env, etc.). Bonus: there is a written process for rotating them.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">07</span><span>Is there a consistent error-handling and logging pattern?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>One way to throw, one way to catch, one way to log. Errors that surface to users have predictable shapes; logs include enough context to debug without reproducing the bug. If different routes handle errors differently, you'll spend the next quarter chasing inconsistencies.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">08</span><span>Do you have at least smoke-level tests on the critical path?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>Not "100% coverage" — that's overkill for an MVP. Just: signup → core action → critical write → critical read. If those four still pass after a refactor, you can ship with reasonable confidence. If you have zero tests, every AI-generated change is a guess.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">09</span><span>Is deployment one command (or one merge)?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>Push to <code>main</code>, deploy fires; or run <code>deploy</code> and the right thing happens. No "I need to remember to also …". Manual steps are where AI-coded MVPs die when traffic appears.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">10</span><span>Have the basics of OWASP been considered?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>SQL injection (parameterized queries, not string concatenation), XSS (escaped output by default), CSRF (tokens or SameSite cookies), rate limiting on auth endpoints, no PII in logs. Agents will happily write a login route that lets anyone log in as anyone. A 30-minute review catches most of it.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">11</span><span>Is "done" defined somewhere?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>A short <strong>docs/definition-of-done.md</strong> — what tests must pass, what docs must be updated, what manual checks are required before merging. Without it, agents declare any green build "done" and you ship features that haven't been validated.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary><span class="num">12</span><span>Could a stranger continue this project tomorrow?</span><span class="arrow">▾</span></summary>
+        <div class="body">
+          <p>Imagine a developer joining for one week, no calls. Can they: clone, install, run locally, find the architecture doc, find the database doc, deploy a small change? If the honest answer is "no, they'd need me to walk them through it", the codebase is not handoff-ready — and any rescue/rewrite quote you get from a dev shop will reflect that.</p>
+        </div>
+      </details>
+    </ol>
+
+    <div class="scoring">
+      <h3>How to read your score</h3>
+      <p><strong>0–2 nos</strong> → Solid foundation. You're in the minority of vibe-coded MVPs.</p>
+      <p><strong>3–5 nos</strong> → Fixable in a focused week. Most growth-stage problems will trace back here.</p>
+      <p><strong>6+ nos</strong> → The codebase is a stronger candidate for a Setup Sprint than for new features. Ship caution.</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <span>VibeOps by Unibrix</span>
+    <a href="mailto:vibeops@unibrix.com">vibeops@unibrix.com</a>
+    <a href="https://unibrix.com" target="_blank" rel="noopener">unibrix.com</a>
+    <a href="/">Home</a>
+    <a href="privacy.html">Privacy</a>
+  </footer>
+
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie preferences" hidden>
+    <p>We use Google Analytics to understand how the site is used. No ads, no third-party tracking. <a href="privacy.html">Privacy policy</a>.</p>
+    <div class="cookie-buttons">
+      <button type="button" class="cookie-btn reject" data-consent="reject">Reject</button>
+      <button type="button" class="cookie-btn accept" data-consent="accept">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'vibeops_consent';
+      var banner = document.getElementById('cookie-banner');
+      if (!banner) return;
+      var stored;
+      try { stored = localStorage.getItem(KEY); } catch (e) { stored = null; }
+      if (stored !== 'granted' && stored !== 'denied') banner.hidden = false;
+      banner.addEventListener('click', function (event) {
+        var btn = event.target.closest('[data-consent]');
+        if (!btn) return;
+        var choice = btn.dataset.consent === 'accept' ? 'granted' : 'denied';
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            ad_storage: choice, ad_user_data: choice,
+            ad_personalization: choice, analytics_storage: choice
+          });
+        }
+        banner.hidden = true;
+      });
+    })();
+  </script>
+</body>
+</html>

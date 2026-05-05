@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VibeOps by Unibrix — AI Codebase Audit for Vibe-Coded MVPs</title>
+  <meta name="description" content="VibeOps by Unibrix is an engineering setup sprint for founders using Cursor, Claude Code, Codex, and OpenCode. Architecture guardrails, agent rules (AGENTS.md, CLAUDE.md, .cursor/rules), and AI codebase audits that keep vibe-coded MVPs maintainable." />
+  <meta name="keywords" content="vibe coding technical debt, AI codebase audit, Cursor rules, Claude Code best practices, AI coding agent workflow, AI-generated code maintainability, AI MVP architecture, AGENTS.md, CLAUDE.md setup, AI coding standards, agent operating system, AI-ready repository, vibe coded MVP, prompt pack alternative, founder engineering setup" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#090b0f" />
+  <link rel="canonical" href="https://vibeops.unibrix.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VibeOps by Unibrix" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="VibeOps by Unibrix — Keep vibe coding. Stop shipping chaos." />
+  <meta property="og:description" content="An engineering setup sprint for founders building MVPs with Cursor, Claude Code, Codex, and OpenCode. Architecture guardrails, agent rules, and an AI codebase audit." />
+  <meta property="og:url" content="https://vibeops.unibrix.com/" />
+  <meta property="og:image" content="https://vibeops.unibrix.com/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="VibeOps by Unibrix — Keep vibe coding. Stop shipping chaos." />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="VibeOps by Unibrix — Keep vibe coding. Stop shipping chaos." />
+  <meta name="twitter:description" content="Architecture guardrails, agent rules, and an AI codebase audit for vibe-coded MVPs." />
+  <meta name="twitter:image" content="https://vibeops.unibrix.com/images/og-image.png" />
+  <meta name="twitter:image:alt" content="VibeOps by Unibrix — Keep vibe coding. Stop shipping chaos." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+  <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+
+  <!-- Google Analytics 4 with Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    var stored = (function(){ try { return localStorage.getItem('vibeops_consent'); } catch(e) { return null; } })();
+    var granted = stored === 'granted';
+    gtag('consent', 'default', {
+      'ad_storage': granted ? 'granted' : 'denied',
+      'ad_user_data': granted ? 'granted' : 'denied',
+      'ad_personalization': granted ? 'granted' : 'denied',
+      'analytics_storage': granted ? 'granted' : 'denied',
+      'wait_for_update': 500
+    });
+    gtag('js', new Date());
+    gtag('config', 'G-RVPKTR892W', { 'anonymize_ip': true });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RVPKTR892W"></script>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://vibeops.unibrix.com/#organization",
+        "name": "VibeOps by Unibrix",
+        "url": "https://vibeops.unibrix.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://vibeops.unibrix.com/images/og-image.png"
+        },
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Unibrix",
+          "url": "https://unibrix.com"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://vibeops.unibrix.com/#website",
+        "url": "https://vibeops.unibrix.com",
+        "name": "VibeOps by Unibrix",
+        "description": "AI codebase audit and engineering setup sprint for founders building MVPs with AI coding agents",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://vibeops.unibrix.com/#organization" }
+      },
+      {
+        "@type": "Service",
+        "@id": "https://vibeops.unibrix.com/#service",
+        "name": "VibeOps Setup Sprint",
+        "serviceType": "AI codebase audit and engineering setup",
+        "description": "A productized engineering sprint that installs architecture guardrails, agent rules (AGENTS.md, CLAUDE.md, .cursor/rules), database patterns, and a review workflow into AI-coded MVPs so founders can keep vibe coding without accumulating technical debt.",
+        "provider": { "@id": "https://vibeops.unibrix.com/#organization" },
+        "areaServed": ["US", "GB", "EU", "Nordics"],
+        "audience": {
+          "@type": "BusinessAudience",
+          "audienceType": "Early-stage founders, technical founders, founder-CTOs building with Cursor, Claude Code, Codex, and OpenCode"
+        },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "USD",
+          "price": "500",
+          "priceSpecification": {
+            "@type": "PriceSpecification",
+            "minPrice": "500",
+            "maxPrice": "2000",
+            "priceCurrency": "USD"
+          },
+          "availability": "https://schema.org/LimitedAvailability",
+          "url": "https://vibeops.unibrix.com/#access"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "What VibeOps installs",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI Codebase Audit" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Agent Rules & Context (AGENTS.md, CLAUDE.md, .cursor/rules)" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Architecture Guardrails" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Maintainability & Review Workflow" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Founder-friendly Handoff Docs" } }
+          ]
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://vibeops.unibrix.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is VibeOps by Unibrix?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "VibeOps is a Unibrix engineering setup sprint that adds architecture guardrails, agent rules (AGENTS.md, CLAUDE.md, .cursor/rules), review workflow, and maintainability docs to AI-coded MVPs. It is built for founders using Cursor, Claude Code, Codex, and OpenCode."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Who is VibeOps for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Early-stage founders, technical founders, and founder-CTOs building MVPs with AI coding agents who want to keep shipping fast without creating an unmaintainable codebase."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is VibeOps different from prompt packs or .cursorrules templates?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Prompt packs are generic and copyable. VibeOps is customized to a real repo, real stack, real database, and real shipping workflow. It includes a codebase audit and concrete architecture guardrails — not just a rules file."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will VibeOps slow down my AI coding agent?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. The opposite. Coding agents produce more consistent and correct output when given project-specific context (AGENTS.md, CLAUDE.md, architecture docs). VibeOps preserves vibe-coding speed while improving output quality."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does VibeOps work with Cursor, Claude Code, Codex, and OpenCode?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. VibeOps targets local and IDE-based coding agents and installs the relevant context files for each (.cursor/rules for Cursor, CLAUDE.md for Claude Code, AGENTS.md as a shared cross-tool standard, plus architecture and database docs)."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will VibeOps rewrite my code?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. VibeOps preserves the working MVP. It adds the engineering system — docs, rules, structure, workflow — around the existing code so future changes are safer and cheaper."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to be technical to use VibeOps?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. VibeOps is built for founders who code with AI agents but may not have a deep engineering background. The audit, docs, and workflow are designed to be founder-friendly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What does a Setup Sprint include?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "An audit of the repo, custom-installed agent rules and architecture docs, a database guardrail review, a definition-of-done, a review and shipping workflow, and a founder call to walk through everything."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does a Setup Sprint take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Typically days, not weeks. The exact timeline depends on repo size and complexity."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I get started?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Request early access on https://vibeops.unibrix.com/. Unibrix is starting with a small number of founder codebase audits."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "HowTo",
+        "@id": "https://vibeops.unibrix.com/#howto",
+        "name": "How VibeOps installs an engineering system into a vibe-coded MVP",
+        "description": "Three steps to turn an AI-coded MVP into a maintainable, handoff-ready product without rewriting it.",
+        "step": [
+          {
+            "@type": "HowToStep",
+            "position": 1,
+            "name": "AI Codebase Audit",
+            "text": "Unibrix reviews the repo, current AI agent setup, architecture, database structure, testing, deployment, and obvious risks. Output is a punch list of what to fix and what to keep."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 2,
+            "name": "Install the Agent Operating System",
+            "text": "Customized AGENTS.md, CLAUDE.md, .cursor/rules, docs/architecture.md, docs/database.md, docs/development-workflow.md, and docs/definition-of-done.md are written directly into the repo so coding agents stay on-rails."
+          },
+          {
+            "@type": "HowToStep",
+            "position": 3,
+            "name": "Hand off the review workflow",
+            "text": "A founder-friendly workflow for prompting the agent, reviewing output, running checks, and shipping. The result: a codebase that humans (or Unibrix) can continue maintaining without a rewrite."
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://vibeops.unibrix.com/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://vibeops.unibrix.com/" }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="VibeOps home"><span>V</span>VibeOps <em>by Unibrix</em></a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#problem">Problem</a>
+      <a href="#system">System</a>
+      <a href="#how">How it works</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#access">Get audit</a>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">AI codebase audit · agent rules · architecture guardrails</p>
+        <h1>Keep vibe coding.<br><span>Stop shipping chaos.</span></h1>
+        <p class="hero-sub">VibeOps gives founders using Cursor, Claude Code, Codex, and OpenCode a maintainable engineering system before their MVP turns into technical debt.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#access">Request early access</a>
+          <a class="btn secondary" href="#system">See the system</a>
+        </div>
+        <div class="tool-row" aria-label="Supported AI coding tools">
+          <span>Cursor</span><span>Claude Code</span><span>Codex</span><span>OpenCode</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" data-parallax="0.09" aria-label="VibeOps product preview">
+        <div class="terminal-card">
+          <div class="terminal-top"><i></i><i></i><i></i><strong>vibeops audit</strong></div>
+          <div class="terminal-line muted">Scanning repo context…</div>
+          <div class="terminal-line ok">✓ Agent instructions detected</div>
+          <div class="terminal-line warn">▲ 4 architecture risks found</div>
+          <div class="terminal-line ok">✓ Database guardrails generated</div>
+          <div class="terminal-line ok">✓ Definition of Done installed</div>
+          <div class="score-ring" style="--score:82"><b>82</b><small>readiness</small></div>
+        </div>
+        <div class="floating-card card-a" data-parallax="0.16">AGENTS.md<br><small>project-specific rules</small></div>
+        <div class="floating-card card-b" data-parallax="-0.12">Architecture map<br><small>human + agent readable</small></div>
+      </div>
+    </section>
+
+    <section class="logo-strip reveal" aria-label="Positioning summary">
+      <p>For founders who can ship with AI — but still need a codebase real engineers can support.</p>
+    </section>
+
+    <section class="section split" id="problem">
+      <div class="section-title reveal">
+        <p class="eyebrow">The new technical debt</p>
+        <h2>AI can build features. It does not automatically build architecture.</h2>
+      </div>
+      <div class="problem-grid reveal">
+        <article><span>01</span><h3>Agents invent patterns</h3><p>Every task creates a slightly different structure, naming convention, error pattern, or database idea.</p></article>
+        <article><span>02</span><h3>MVP works, then freezes</h3><p>The demo is fast. The second month is scary because nobody knows what will break.</p></article>
+        <article><span>03</span><h3>Handoff gets expensive</h3><p>Developers see unclear architecture and quote a rewrite instead of continuing the product.</p></article>
+      </div>
+    </section>
+
+    <section class="section system" id="system">
+      <div class="section-title center reveal">
+        <p class="eyebrow">What VibeOps installs</p>
+        <h2>An operating system for AI-assisted engineering.</h2>
+        <p>Not a generic prompt pack. A repo-specific setup that tells agents how this product should be built, reviewed, and maintained.</p>
+      </div>
+      <div class="system-board reveal">
+        <div class="system-node big">
+          <strong>AI Codebase Audit</strong>
+          <p>Architecture, database, security, testing, deployment, and maintainability risks.</p>
+        </div>
+        <div class="system-node"><strong>Agent Rules</strong><p>AGENTS.md, CLAUDE.md, .cursor/rules, OpenCode guidance.</p></div>
+        <div class="system-node"><strong>Architecture Guardrails</strong><p>Boundaries for APIs, services, auth, data models, logs, and errors.</p></div>
+        <div class="system-node"><strong>Shipping Workflow</strong><p>Plan → prompt → implement → test → review → release.</p></div>
+        <div class="system-node"><strong>Human Handoff</strong><p>Docs that make the codebase easier for Unibrix or another team to support.</p></div>
+      </div>
+    </section>
+
+    <section class="section visual-section">
+      <div class="browser reveal" data-parallax="0.06">
+        <div class="browser-bar"><i></i><i></i><i></i><span>repo / docs / agent-context</span></div>
+        <div class="browser-grid">
+          <div class="file-list"><b>Installed kit</b><span>AGENTS.md</span><span>CLAUDE.md</span><span>.cursor/rules</span><span>docs/architecture.md</span><span>docs/database.md</span><span>definition-of-done.md</span></div>
+          <div class="doc-preview"><p class="tag">Rule</p><h3>Before adding a feature, inspect existing architecture and reuse current patterns.</h3><p>Agents get constraints, not just vibes. Humans get a codebase they can reason about.</p></div>
+          <div class="health"><b>Codebase readiness</b><div class="bar"><span style="width:74%"></span></div><small>+32% after setup sprint</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cards" id="how">
+      <div class="section-title reveal"><p class="eyebrow">How it works</p><h2>Small sprint. Practical output.</h2></div>
+      <div class="steps reveal">
+        <article><b>1</b><h3>Send context</h3><p>Tell us what you are building, the stack, and which AI coding tools you use.</p></article>
+        <article><b>2</b><h3>Audit the repo</h3><p>We identify risky patterns, missing docs, fragile database choices, and workflow gaps.</p></article>
+        <article><b>3</b><h3>Install guardrails</h3><p>We add rules, docs, checklists, and a repeatable AI-assisted development workflow.</p></article>
+        <article><b>4</b><h3>Ship cleaner</h3><p>Your agent keeps moving fast — but with constraints humans can support later.</p></article>
+      </div>
+    </section>
+
+    <section class="section comparison">
+      <div class="section-title center reveal"><p class="eyebrow">Positioning</p><h2>More useful than prompts. Faster than hiring a team.</h2></div>
+      <div class="compare-grid reveal">
+        <article><h3>Prompt pack</h3><p>Generic. Copyable. Does not know your repo, database, product, or constraints.</p></article>
+        <article class="featured"><h3>VibeOps</h3><p>Customized architecture rules, agent context, audit findings, and workflow for your actual MVP.</p></article>
+        <article><h3>Dev team</h3><p>Powerful, but slower and more expensive before you know whether the product is ready.</p></article>
+      </div>
+    </section>
+
+    <section class="section use-cases">
+      <div class="section-title reveal"><p class="eyebrow">Use it when</p><h2>Your MVP works — but you are not sure it survives real users.</h2></div>
+      <div class="use-grid reveal">
+        <p>You built with AI and need a technical sanity check.</p>
+        <p>Your agent keeps rewriting instead of extending.</p>
+        <p>You are about to onboard users, investors, or contractors.</p>
+        <p>You want Unibrix to support the product without a rewrite.</p>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="section-title center reveal"><p class="eyebrow">FAQ</p><h2>Direct answers for founders and AI search.</h2></div>
+      <div class="faq-list reveal">
+        <details open><summary>What is VibeOps?</summary><p>VibeOps is an AI codebase audit and setup sprint by Unibrix. It adds agent instructions, architecture docs, database rules, testing expectations, and review workflow to AI-coded MVPs.</p></details>
+        <details><summary>Is this only for Cursor?</summary><p>No. It supports Cursor, Claude Code, Codex, OpenCode, and similar local or terminal-based coding agents.</p></details>
+        <details><summary>How is this different from a rules pack?</summary><p>Rules packs are generic. VibeOps is customized to your stack, repo, product, database, deployment, and team handoff needs.</p></details>
+        <details><summary>Do you need repo access?</summary><p>For a deep audit, yes. For early validation, a stack description and call is enough.</p></details>
+        <details><summary>Is it SaaS or service?</summary><p>The first version is a productized Unibrix service. MCP/CLI tooling can come later after repeated patterns are validated.</p></details>
+      </div>
+    </section>
+
+    <section class="section access" id="access">
+      <div class="access-card reveal">
+        <div>
+          <p class="eyebrow">Early access</p>
+          <h2>Get the AI Codebase Readiness Checklist.</h2>
+          <p>Join the list and request a founder-friendly audit for your vibe-coded MVP.</p>
+        </div>
+        <form class="signup" id="signup-form" action="https://formsubmit.co/vibeops@unibrix.com" method="POST">
+          <input type="email" name="email" placeholder="founder@startup.com" required />
+          <select name="tool" aria-label="AI coding tool" required>
+            <option value="">Tool you use</option>
+            <option>Cursor</option><option>Claude Code</option><option>Codex</option><option>OpenCode</option><option>Multiple tools</option>
+          </select>
+          <button class="btn primary" type="submit">Request access</button>
+          <small>No spam. We’ll follow up with checklist + audit option.</small>
+          <!-- FormSubmit config -->
+          <input type="hidden" name="_subject" value="VibeOps early access request" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://vibeops.unibrix.com/checklist.html?thanks=1" />
+          <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" />
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>VibeOps by Unibrix</span>
+    <a href="mailto:vibeops@unibrix.com">vibeops@unibrix.com</a>
+    <a href="https://unibrix.com" target="_blank" rel="noopener">unibrix.com</a>
+    <a href="privacy.html">Privacy</a>
+  </footer>
+
+  <div id="cookie-banner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie preferences" hidden>
+    <p>We use Google Analytics to understand how the site is used. No ads, no third-party tracking. <a href="privacy.html">Privacy policy</a>.</p>
+    <div class="cookie-buttons">
+      <button type="button" class="cookie-btn reject" data-consent="reject">Reject</button>
+      <button type="button" class="cookie-btn accept" data-consent="accept">Accept</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

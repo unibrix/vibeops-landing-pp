@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="VibeOps by Unibrix — Keep vibe coding. Stop shipping chaos.">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#090b0f"/>
+      <stop offset="100%" stop-color="#10131a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.85" cy="0.15" r="0.7">
+      <stop offset="0%" stop-color="#e8ff93" stop-opacity="0.22"/>
+      <stop offset="60%" stop-color="#e8ff93" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#e8ff93" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#171b24" stop-opacity="0.96"/>
+      <stop offset="100%" stop-color="#0a0c11" stop-opacity="0.96"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Brand mark -->
+  <g transform="translate(72, 70)">
+    <rect x="0" y="0" width="56" height="56" rx="16" fill="#e8ff93"/>
+    <text x="28" y="42" text-anchor="middle" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#090b0f" letter-spacing="-1">V</text>
+    <text x="76" y="36" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="850" font-size="26" fill="#f4f0e8" letter-spacing="-1">VibeOps</text>
+    <text x="76" y="58" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="600" font-size="16" fill="#9ea3ad">by Unibrix</text>
+  </g>
+
+  <!-- Eyebrow -->
+  <text x="72" y="220" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#e8ff93" letter-spacing="2.5">AI CODEBASE AUDIT · AGENT RULES · ARCHITECTURE GUARDRAILS</text>
+
+  <!-- Headline (sized to clear right column at x=780) -->
+  <text x="72" y="310" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="900" font-size="76" fill="#f4f0e8" letter-spacing="-3.5">Keep vibe coding.</text>
+  <text x="72" y="386" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="900" font-size="76" fill="#e8ff93" letter-spacing="-3.5">Stop shipping chaos.</text>
+
+  <!-- Subhead -->
+  <text x="72" y="455" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="500" font-size="22" fill="#b8bdc7">A maintainable engineering system for founders building MVPs</text>
+  <text x="72" y="486" font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="500" font-size="22" fill="#b8bdc7">with Cursor, Claude Code, Codex, and OpenCode.</text>
+
+  <!-- Tool chips -->
+  <g font-family="Inter, system-ui, -apple-system, sans-serif" font-weight="600" font-size="15" fill="#c8ccd4">
+    <rect x="72"  y="540" width="84"  height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="114" y="563" text-anchor="middle">Cursor</text>
+    <rect x="168" y="540" width="118" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="227" y="563" text-anchor="middle">Claude Code</text>
+    <rect x="298" y="540" width="78"  height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="337" y="563" text-anchor="middle">Codex</text>
+    <rect x="388" y="540" width="108" height="34" rx="17" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.10"/>
+    <text x="442" y="563" text-anchor="middle">OpenCode</text>
+  </g>
+
+  <!-- Right-side terminal card (shifted right + tighter) -->
+  <g transform="translate(820, 130)">
+    <rect width="308" height="370" rx="28" fill="url(#card)" stroke="#e8ff93" stroke-opacity="0.22"/>
+    <g transform="translate(20, 28)">
+      <circle cx="6"  cy="6" r="6" fill="#ff6d6d"/>
+      <circle cx="26" cy="6" r="6" fill="#ffc857"/>
+      <circle cx="46" cy="6" r="6" fill="#74e8b0"/>
+      <text x="268" y="11" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="700" fill="#8f97a4">vibeops audit</text>
+    </g>
+    <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13">
+      <rect x="20" y="78"  width="268" height="36" rx="12" fill="#ffffff" fill-opacity="0.045"/>
+      <text x="34" y="101" fill="#9ca5b3">Scanning repo context…</text>
+      <rect x="20" y="122" width="268" height="36" rx="12" fill="#ffffff" fill-opacity="0.045"/>
+      <text x="34" y="145" fill="#abf3cb">✓ Agent instructions detected</text>
+      <rect x="20" y="166" width="268" height="36" rx="12" fill="#ffffff" fill-opacity="0.045"/>
+      <text x="34" y="189" fill="#ffd07a">▲ 4 architecture risks found</text>
+      <rect x="20" y="210" width="268" height="36" rx="12" fill="#ffffff" fill-opacity="0.045"/>
+      <text x="34" y="233" fill="#abf3cb">✓ Database guardrails generated</text>
+      <rect x="20" y="254" width="268" height="36" rx="12" fill="#ffffff" fill-opacity="0.045"/>
+      <text x="34" y="277" fill="#abf3cb">✓ Definition of Done installed</text>
+    </g>
+    <!-- Score ring -->
+    <g transform="translate(208, 252)">
+      <circle cx="50" cy="50" r="50" fill="#10131a"/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#ffffff" stroke-opacity="0.10" stroke-width="10"/>
+      <circle cx="50" cy="50" r="42" fill="none" stroke="#e8ff93" stroke-width="10" stroke-linecap="round"
+              stroke-dasharray="216.4 263.9" transform="rotate(-90 50 50)"/>
+      <text x="50" y="56" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-weight="900" font-size="26" fill="#f4f0e8" letter-spacing="-1.5">82</text>
+    </g>
+  </g>
+</svg>

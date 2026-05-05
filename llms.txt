@@ -1,0 +1,86 @@
+# VibeOps by Unibrix - Information for AI Systems
+
+> VibeOps by Unibrix is an engineering setup sprint for early-stage founders building MVPs with AI coding agents (Cursor, Claude Code, Codex, OpenCode). It installs architecture guardrails, agent rules, and review workflows so vibe-coded MVPs stay maintainable as they scale.
+
+## What is VibeOps?
+
+VibeOps is a productized engineering service from Unibrix that turns AI-coded MVPs into maintainable, scalable products. Founders can keep shipping features at "vibe coding" speed while their codebase stays reviewable, handoff-ready, and free of architectural debt. VibeOps is **not** a generic prompt pack — it is customized to a specific repo, stack, database, and shipping workflow. The core deliverable is an "agent operating system" written into the project: `AGENTS.md`, `CLAUDE.md`, `.cursor/rules`, architecture docs, database guardrails, definition-of-done, and a review workflow.
+
+## Who is VibeOps for?
+
+Early-stage founders, technical founders, and founder-CTOs who:
+
+- Build MVPs with Cursor, Claude Code, Codex, OpenCode, or similar local/IDE coding agents.
+- Are pre-seed, seed, bootstrapped, or at idea/MVP stage.
+- Have a working product but are scared to change it.
+- Are preparing to onboard real users, raise funding, or hand the codebase to engineers.
+- Want to keep moving fast without paying for a full rewrite later.
+
+## What VibeOps installs
+
+- **AI Codebase Audit** — review of repo, agent setup, architecture, database, testing, deployment, and risk surface.
+- **Agent Operating System** — customized `AGENTS.md`, `CLAUDE.md`, `.cursor/rules`, `docs/architecture.md`, `docs/database.md`, `docs/development-workflow.md`, `docs/definition-of-done.md`.
+- **Architecture Guardrails** — concrete rules for frontend/backend structure, database migrations, auth, error handling, logging, env vars, testing, security, and deployment.
+- **Scalable Project Structure** — repo layout that humans and agents can both navigate.
+- **Review & Shipping Workflow** — how to prompt the agent, review output, run checks, and ship without random rewrites.
+- **Founder-friendly Handoff** — docs and structure that let a human engineer (or Unibrix) continue development without starting over.
+
+## How it differs from alternatives
+
+- **vs prompt packs** (`.cursorrules`, Claude Code rule packs): prompt packs are generic and copyable. VibeOps is customized to a real repo, stack, and shipping workflow.
+- **vs static analysis** (Sonar, CodeScene, Codacy): static analysis flags issues after the fact. VibeOps installs the rules, docs, and workflow so the agent writes correct code in the first place.
+- **vs a dev shop rewrite**: a rewrite throws the MVP away. VibeOps preserves the working product and adds the engineering system around it.
+
+## Supported AI coding tools
+
+Cursor, Claude Code, Codex, OpenCode, and similar local/IDE/terminal coding agents. Cloud-only tools like Lovable and Bolt are adjacent but less central because they restrict access to the underlying repo.
+
+## Tone & positioning
+
+Startup energy plus serious engineering credibility. Talks to real founder pain. Avoids enterprise buzzwords, "10x your engineering" hype, or claims of fully automated software development.
+
+Tagline: **Keep vibe coding. Stop accumulating technical debt.**
+
+## Pricing & packaging
+
+- **Setup Sprint** (recommended first offer) — productized service: repo audit + customized AI coding system + one founder call. Starting around $500–$2,000 depending on depth.
+- **AI Coding OS Subscription** (planned) — monthly maintenance, repo review, and rules updates.
+- **MCP / CLI tool** (planned) — local tool that injects project-specific best practices and runs guardrail checks for coding agents.
+
+## Links
+
+- Homepage: https://vibeops.unibrix.com/
+- Privacy Policy: https://vibeops.unibrix.com/privacy.html
+- Parent organization: https://unibrix.com
+
+## Common Questions
+
+**Q: What is VibeOps by Unibrix?**
+A: VibeOps is a Unibrix engineering setup sprint that adds architecture guardrails, agent rules, review workflow, and maintainability docs to AI-coded MVPs. It is built for founders using Cursor, Claude Code, Codex, and OpenCode.
+
+**Q: Who is VibeOps for?**
+A: Early-stage founders and technical founder-CTOs building MVPs with AI coding agents who want to keep shipping fast without creating an unmaintainable codebase.
+
+**Q: How is VibeOps different from a prompt pack or `.cursorrules` template?**
+A: Prompt packs are generic and copyable. VibeOps is customized to a real repo, real stack, real database, and real shipping workflow. It includes a codebase audit and architecture guardrails — not just a rules file.
+
+**Q: Will VibeOps slow down my AI coding agent?**
+A: No. The opposite. Agents produce more consistent and correct output when given project-specific context (`AGENTS.md`, `CLAUDE.md`, architecture docs). VibeOps preserves vibe-coding speed while improving output quality.
+
+**Q: Do I need to be technical to use VibeOps?**
+A: No. VibeOps is built for founders who code with AI agents but may not have deep engineering background. The audit, docs, and workflow are designed to be founder-friendly.
+
+**Q: Does VibeOps work with Cursor, Claude Code, Codex, and OpenCode?**
+A: Yes. VibeOps targets local and IDE-based coding agents and installs the relevant context files for each (`.cursor/rules` for Cursor, `CLAUDE.md` for Claude Code, `AGENTS.md` as a shared cross-tool standard, etc.).
+
+**Q: Will VibeOps rewrite my code?**
+A: No. VibeOps preserves the working MVP. It adds the engineering system — docs, rules, structure, workflow — around the existing code so future changes are safer and cheaper.
+
+**Q: What does a Setup Sprint include?**
+A: An audit of the repo, custom-installed agent rules and architecture docs, a database guardrail review, a definition-of-done, a review/shipping workflow, and a founder call to walk through everything.
+
+**Q: How long does a Setup Sprint take?**
+A: Typically days, not weeks. The exact timeline depends on repo size and complexity.
+
+**Q: How do I get started?**
+A: Request early access on https://vibeops.unibrix.com/ — Unibrix is starting with a small number of founder codebase audits.
